@@ -53,9 +53,6 @@ bool CommandLine::AnalyzeStream()
     if (!stream) {
         return true;
     }
-    if (!stream->available()) {
-        return false;
-    }
 
     while (stream->available()) {
         char ch = stream->read();
