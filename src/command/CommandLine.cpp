@@ -30,12 +30,12 @@ bool CommandLine::AddCommand(Command *command)
 
 bool CommandLine::Analyze()
 {
-    bool bSerialResult = analyzeSerial();
-    bool bStreamResult = analyzeStream();
+    bool bSerialResult = AnalyzeSerial();
+    bool bStreamResult = AnalyzeStream();
     return bSerialResult || bStreamResult;
 }
 
-bool CommandLine::analyzeSerial()
+bool CommandLine::AnalyzeSerial()
 {
     if (!Serial.available()) {
         return false;
@@ -48,7 +48,7 @@ bool CommandLine::analyzeSerial()
     return true;
 }
 
-bool CommandLine::analyzeStream()
+bool CommandLine::AnalyzeStream()
 {
     if (!stream->available()) {
         return false;

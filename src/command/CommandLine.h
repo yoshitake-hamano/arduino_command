@@ -18,10 +18,10 @@ public:
     void Initialize(Stream *stream);
     bool AddCommand(Command *command);
     bool Analyze();
+    bool AnalyzeSerial();
+    bool AnalyzeStream();
 
 private:
-    bool analyzeSerial();
-    bool analyzeStream();
     void analyzeChar(char ch);
     int executeCommandLine(const char *line);
 
