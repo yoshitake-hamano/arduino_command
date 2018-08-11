@@ -1,0 +1,18 @@
+{
+    "name": "Serial command library for Arduino",
+    "keywords": "serial, command",
+    "description": "Serial command Library for Arduino",
+    "authors":
+    {
+        "name": "Yoshitake Hamano",
+        "email": "oed0cow6oy5@gmail.com"
+    },
+    "repository":
+    {
+        "type": "git",
+        "url": "https://github.com/yoshitake-hamano/arduino_command.git"
+    },
+    "version": "0.0.1",
+    "frameworks": "arduino",
+    "platforms": "*"
+}
