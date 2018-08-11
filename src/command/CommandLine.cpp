@@ -50,6 +50,9 @@ bool CommandLine::AnalyzeSerial()
 
 bool CommandLine::AnalyzeStream()
 {
+    if (!stream) {
+        return true;
+    }
     if (!stream->available()) {
         return false;
     }
@@ -67,7 +70,9 @@ void CommandLine::analyzeChar(char ch)
         return;
     }
     Serial.write(ch);
-    stream->write(ch);
+    if (stream) {
+        stream->write(ch);
+    }
 
     switch (ch) {
     case '\n':
@@ -76,9 +81,11 @@ void CommandLine::analyzeChar(char ch)
             Serial.write("\nresult: ");
             Serial.print(result);
             Serial.write("\n\n");
-            stream->write("\nresult: ");
-            stream->print(result);
-            stream->write("\n\n");
+            if (stream) {
+                stream->write("\nresult: ");
+                stream->print(result);
+                stream->write("\n\n");
+            }
         }
         buf = "";
         break;
