@@ -75,13 +75,12 @@ void CommandLine::analyzeChar(char ch)
     case '\n':
         if (buf.length() != 0) {
             int result = executeCommandLine(buf.c_str());
-            Serial.write("\nresult: ");
-            Serial.print(result);
-            Serial.write("\n\n");
+            std::string message = "\nresult: ";
+            message += result;
+            message += "\n\n";
+            Serial.write(message.c_str());
             if (stream) {
-                stream->write("\nresult: ");
-                stream->print(result);
-                stream->write("\n\n");
+                stream->write(message.c_str());
             }
         }
         buf = "";
