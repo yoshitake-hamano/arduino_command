@@ -4,6 +4,8 @@
 
 #include "CommandLine.h"
 
+#include <sstream>
+
 #include "log/Log.h"
 #include "Command.h"
 #include "CommandLineParser.h"
@@ -75,12 +77,14 @@ void CommandLine::analyzeChar(char ch)
     case '\n':
         if (buf.length() != 0) {
             int result = executeCommandLine(buf.c_str());
-            std::string message = "\nresult: ";
-            message += result;
-            message += "\n\n";
-            Serial.write(message.c_str());
+            std::stringstream message;
+            message << "\nresult: ";
+            message << result;
+            message << "\n\n";
+            char *buf = message.str().c_str();
+            Serial.write(buf);
             if (stream) {
-                stream->write(message.c_str());
+                stream->write(buf);
             }
         }
         buf = "";
@@ -104,10 +108,15 @@ int CommandLine::executeCommandLine(const char *line)
         Command* command = commands[i];
         if (strcmp(parser.GetName(), command->GetName()) == 0) {
             int result = command->Execute(&parser);
-            std::string log = command->GetName();
-            log += ": returns ";
-            log += result;
-            Log::Info(log.c_str());
+            std::stringstream log;
+            log << command->GetName();
+            log << ": returns ";
+            log << result;
+            char *buf = log.str().c_str();
+            Log::Info(buf);
+            if (stream) {
+                stream->write(buf);
+            }
             return result;
         }
     }
