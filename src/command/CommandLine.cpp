@@ -81,7 +81,7 @@ void CommandLine::analyzeChar(char ch)
             message << "\nresult: ";
             message << result;
             message << "\n\n";
-            char *buf = message.str().c_str();
+            const char *buf = message.str().c_str();
             Serial.write(buf);
             if (stream) {
                 stream->write(buf);
@@ -112,7 +112,7 @@ int CommandLine::executeCommandLine(const char *line)
             log << command->GetName();
             log << ": returns ";
             log << result;
-            char *buf = log.str().c_str();
+            const char *buf = log.str().c_str();
             Log::Info(buf);
             if (stream) {
                 stream->write(buf);
