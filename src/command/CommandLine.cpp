@@ -85,6 +85,7 @@ void CommandLine::analyzeChar(char ch)
             Serial.write(buf);
             if (stream) {
                 stream->write(buf);
+                stream->flush();
             }
         }
         buf = "";
