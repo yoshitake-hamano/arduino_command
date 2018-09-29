@@ -24,15 +24,21 @@ public:
     virtual int Execute(const CommandLineParser *parser) = 0;
     void reply(char ch) {
         Serial.write(ch);
-        stream->write(ch);
+        if (stream) {
+            stream->write(ch);
+        }
     }
     void reply(int i) {
         Serial.write(i);
-        stream->write(i);
+        if (stream) {
+            stream->write(i);
+        }
     }
     void reply(const char *str) {
         Serial.write(str);
-        stream->write(str);
+        if (stream) {
+            stream->write(str);
+        }
     }
 
 protected:
