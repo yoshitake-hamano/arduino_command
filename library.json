@@ -1,5 +1,5 @@
 {
-    "name": "Serial command library for Arduino",
+    "name": "serial_command_library",
     "keywords": "serial, command",
     "description": "Serial command Library for Arduino",
     "authors":
